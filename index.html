@@ -9,31 +9,35 @@
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
     }
 
     .container {
       max-width: 600px;
       padding: 20px;
+      margin: auto;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 80vh;
+      background-color: #000;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
     }
 
     .carousel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
       position: absolute;
       opacity: 0;
       transition: opacity 1s ease-in-out;
@@ -48,7 +52,13 @@
       font-size: 2rem;
       color: #d63384;
     }
-
+ 
+    h2 {
+      margin-top: 1px;
+      font-size: 1rem;
+      color: #d63384;
+    }
+  
     p {
       font-size: 1.1rem;
       color: #333;
@@ -72,12 +82,90 @@
     .surprise a:hover {
       background-color: #b0256b;
     }
+
+    /* Estilo do botão "Surpresa 1" para tocar música */
+    .surprise1 {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #d63384;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .surprise1:hover {
+      background-color: #b0256b;
+    }
+
+    /* Corações flutuando */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
+  <!-- Música será carregada mas não tocará até o clique no botão -->
+  <audio id="audio" loop>
     <source src="https://raw.githubusercontent.com/jaopp/-udio-anivers-rio-/main/George%20Michael%20-%20Careless%20Whisper%20%28Official%20Video%29.mp3" type="audio/mp3">
+    Seu navegador não suporta o elemento de áudio.
   </audio>
+
+  <!-- Corações flutuantes -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
 
   <div class="container">
     <div class="carousel">
@@ -89,11 +177,17 @@
       <img src="https://raw.githubusercontent.com/jaopp/presente_niver/main/SGCAM_20250226_174713057.jpg" alt="foto 6">
     </div>
 
-    <h1>Feliz aniversário, meu amor!</h1>
-    <p>Que seu dia seja tão lindo quanto você é pra mim. Obrigado por fazer parte da minha vida. Eu te amo demais!</p>
+    <!-- Botão para tocar música (on/off) -->
+    <button class="surprise1" onclick="toggleMusic()">Surpresa 1</button>
 
+    <h1>Feliz aniversário, meu amor!</h1>
+    <h2>(Abre a surpresa 1)</h2>
+    <p>Faz tempo que eu não escrevo um textinho pra você, mas hj é seu diaa, você merece dms meu amor! Parabéns pelos seus 19 aninhos e por ser essa garota super especial que você é, cada pedacinho de você fez eu me apaixonar cada vez mais e mais até hoje, e espero que eu possa continuar me apaixonando infinitas vezes mais por você! Obrigado por fazer parte da minha vida e desse novo ciclo que estamos vivendo, eu te amo infinitamente meu amor! Desculpa pela fotinha zoada mas eu precisava por uminha só kkkkkk, espero que tenha gostado dessa pequena surpresinha, pois vai ficar guardada pra sempre!</p>
+    <p>Eu te amo meu amor, obrigada por tudo, aproveita seu dia <3</p>
+
+    <!-- Botão surpresa2 para redirecionar para o link -->
     <div class="surprise">
-      <a href="https://photos.app.goo.gl/87DAtXws7t8NYMny5" target="_blank">Surpresa!</a>
+      <a href="https://photos.app.goo.gl/87DAtXws7t8NYMny5" target="_blank">Surpresa 2</a>
     </div>
   </div>
 
@@ -106,6 +200,18 @@
       current = (current + 1) % images.length;
       images[current].classList.add("active");
     }, 4000);
+
+    // Função para alternar a música
+    let isPlaying = false;
+    function toggleMusic() {
+      const audio = document.getElementById('audio');
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      isPlaying = !isPlaying;
+    }
   </script>
 </body>
 </html>
