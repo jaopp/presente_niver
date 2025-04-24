@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Aniversário!</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff0f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel img {
+      display: none;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .carousel img.active {
+      display: block;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    button {
+      background-color: #d63384;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #a82664;
+    }
+  </style>
+</head>
+<body>
+  <audio id="musica" loop>
+    <source src="https://raw.githubusercontent.com/jaopp/-udio-anivers-rio-/main/George%20Michael%20-%20Careless%20Whisper%20(Official%20Video).mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div class="container">
+    <button onclick="document.getElementById('musica').play()">Tocar música</button>
+
+    <div class="carousel">
+      <img src="https://i.imgur.com/vXlVoN3.jpeg" class="active" alt="foto 1">
+      <img src="https://i.imgur.com/uuP4pbJ.jpeg" alt="foto 2">
+      <img src="https://i.imgur.com/vKJI6oA.jpeg" alt="foto 3">
+    </div>
+
+    <h1>Feliz Aniversário, meu amor!</h1>
+    <p>
+      Cada imagem aqui representa o quanto eu sou feliz ao seu lado.  
+      Te amo mais a cada momento!
+    </p>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll(".carousel img");
+    let current = 0;
+
+    setInterval(() => {
+      images[current].classList.remove("active");
+      current = (current + 1) % images.length;
+      images[current].classList.add("active");
+    }, 4000);
+  </script>
+</body>
+</html>
