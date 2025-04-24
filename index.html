@@ -52,13 +52,13 @@
       font-size: 2rem;
       color: #d63384;
     }
- 
+
     h2 {
       margin-top: 1px;
       font-size: 1rem;
       color: #d63384;
     }
-  
+
     p {
       font-size: 1.1rem;
       color: #333;
@@ -83,9 +83,9 @@
       background-color: #b0256b;
     }
 
-    /* Estilo do botão "Surpresa 1" para tocar música */
     .surprise1 {
       display: inline-block;
+      margin-top: 20px;
       padding: 12px 20px;
       background-color: #d63384;
       color: white;
@@ -100,7 +100,6 @@
       background-color: #b0256b;
     }
 
-    /* Corações flutuando */
     .heart {
       position: absolute;
       width: 20px;
@@ -141,16 +140,44 @@
         opacity: 0;
       }
     }
+
+    .extra-gallery {
+      margin-top: 40px;
+    }
+
+    .extra-gallery .photo-block {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .extra-gallery .photo-block div {
+      max-width: 300px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .extra-gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .extra-gallery p {
+      font-size: 1rem;
+      margin-top: 8px;
+      color: #444;
+    }
   </style>
 </head>
 <body>
-  <!-- Música será carregada mas não tocará até o clique no botão -->
   <audio id="audio" loop>
     <source src="https://raw.githubusercontent.com/jaopp/-udio-anivers-rio-/main/George%20Michael%20-%20Careless%20Whisper%20%28Official%20Video%29.mp3" type="audio/mp3">
     Seu navegador não suporta o elemento de áudio.
   </audio>
 
-  <!-- Corações flutuantes -->
   <script>
     function createHeart() {
       const heart = document.createElement("div");
@@ -177,17 +204,33 @@
       <img src="https://raw.githubusercontent.com/jaopp/presente_niver/main/SGCAM_20250226_174713057.jpg" alt="foto 6">
     </div>
 
-    <!-- Botão para tocar música (on/off) -->
-    <button class="surprise1" onclick="toggleMusic()">Surpresa 1</button>
+    <button class="surprise1" onclick="toggleMusic()">Efeito Especial</button>
 
     <h1>Feliz aniversário, meu amor!</h1>
-    <h2>(Abre a surpresa 1)</h2>
+    <h2>(Clica no efeito especial)</h2>
     <p>Faz tempo que eu não escrevo um textinho pra você, mas hj é seu diaa, você merece dms meu amor! Parabéns pelos seus 19 aninhos e por ser essa garota super especial que você é, cada pedacinho de você fez eu me apaixonar cada vez mais e mais até hoje, e espero que eu possa continuar me apaixonando infinitas vezes mais por você! Obrigado por fazer parte da minha vida e desse novo ciclo que estamos vivendo, eu te amo infinitamente meu amor! Desculpa pela fotinha zoada mas eu precisava por uminha só kkkkkk, espero que tenha gostado dessa pequena surpresinha, pois vai ficar guardada pra sempre!</p>
     <p>Eu te amo meu amor, obrigada por tudo, aproveita seu dia <3</p>
 
-    <!-- Botão surpresa2 para redirecionar para o link -->
+    <!-- Galeria extra -->
+    <div class="extra-gallery">
+      <div class="photo-block">
+        <div>
+          <img src="https://raw.githubusercontent.com/jaopp/presente_niver/main/2025042419053156.jpg" alt="Extra 1">
+          <p>Um presente para realizar seu maior sonho, conhecer os kpops</p>
+        </div>
+        <div>
+          <img src="https://raw.githubusercontent.com/jaopp/presente_niver/main/2025042419064440.jpg" alt="Extra 2">
+          <p>Conhecendo mais alguns deles!!!</p>
+        </div>
+        <div>
+          <img src="https://raw.githubusercontent.com/jaopp/presente_niver/main/2025042419074397.jpg" alt="Extra 3">
+          <p> 19ou!!! Bora curtir a Green Valley!!! </p>
+        </div>
+      </div>
+    </div>
+
     <div class="surprise">
-      <a href="https://photos.app.goo.gl/87DAtXws7t8NYMny5" target="_blank">Surpresa 2</a>
+      <a href="https://photos.app.goo.gl/87DAtXws7t8NYMny5" target="_blank">Surpresa/a>
     </div>
   </div>
 
@@ -201,7 +244,6 @@
       images[current].classList.add("active");
     }, 4000);
 
-    // Função para alternar a música
     let isPlaying = false;
     function toggleMusic() {
       const audio = document.getElementById('audio');
