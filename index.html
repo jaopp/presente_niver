@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feliz Aniversário!</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: #fff;
       overflow-x: hidden;
-      position: relative;
+      scroll-behavior: smooth;
+      min-height: 100vh;
     }
 
     .container {
@@ -100,34 +102,20 @@
       background-color: #b0256b;
     }
 
-    .heart {
+    .heart, .rose {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
+      font-size: 24px;
       transform: rotate(45deg);
       animation: float 8s linear infinite;
       opacity: 0.6;
     }
 
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
+    .heart {
+      color: red;
     }
 
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: -10px;
-      top: 0;
+    .rose {
+      color: #FF007F; /* Cor de rosa para a rosa */
     }
 
     @keyframes float {
@@ -170,6 +158,13 @@
       margin-top: 8px;
       color: #444;
     }
+
+    .counter {
+      font-size: 1.3rem;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #d63384;
+    }
   </style>
 </head>
 <body>
@@ -182,6 +177,7 @@
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
+      heart.textContent = "❤️"; // Coração como emoji
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (6 + Math.random() * 4) + "s";
       document.body.appendChild(heart);
@@ -191,7 +187,34 @@
       }, 10000);
     }
 
-    setInterval(createHeart, 300);
+    function createRose() {
+      const rose = document.createElement("div");
+      rose.classList.add("rose");
+      rose.textContent = "🌹"; // Rosa como emoji
+      rose.style.left = Math.random() * 100 + "vw";
+      rose.style.animationDuration = (6 + Math.random() * 4) + "s";
+      document.body.appendChild(rose);
+
+      setTimeout(() => {
+        rose.remove();
+      }, 10000);
+    }
+
+    setInterval(() => {
+      createHeart();
+      createRose();
+    }, 300);
+
+    function updateDaysCounter() {
+      const startDate = new Date("2022-01-01");
+      const today = new Date();
+      const diffTime = today - startDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+      document.getElementById('counter').innerText = `Hoje fazem ${diffDays} dias que eu te amo!`;
+    }
+
+    setInterval(updateDaysCounter, 1000);
   </script>
 
   <div class="container">
@@ -210,6 +233,8 @@
     <h2>(Clica no efeito especial)</h2>
     <p>Faz tempo que eu não escrevo um textinho pra você, mas hj é seu diaa, você merece dms meu amor! Parabéns pelos seus 19 aninhos e por ser essa garota super especial que você é, cada pedacinho de você fez eu me apaixonar cada vez mais e mais até hoje, e espero que eu possa continuar me apaixonando infinitas vezes mais por você! Obrigado por fazer parte da minha vida e desse novo ciclo que estamos vivendo, eu te amo infinitamente meu amor! Desculpa pela fotinha zoada mas eu precisava por uminha só kkkkkk, espero que tenha gostado dessa pequena surpresinha, pois vai ficar guardada pra sempre!</p>
     <p>Eu te amo meu amor, obrigada por tudo, aproveita seu dia <3</p>
+
+    <div class="counter" id="counter">Hoje fazem 0 dias que eu te amo!</div>
 
     <!-- Galeria extra -->
     <div class="extra-gallery">
